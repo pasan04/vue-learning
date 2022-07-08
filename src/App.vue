@@ -1,15 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <learning-resources></learning-resources>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import LearningResources from './components/learning-resources/LearningResource.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components:{
+    LearningResources
+  },
+  data(){
+    // storedResources:[
+    //   {
+    //     id:'official-guide',
+    //     title:'Official Guide',
+        
+    //   }
+    // ]
   }
 }
 </script>
