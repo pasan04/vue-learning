@@ -1,5 +1,5 @@
 <template>
-    <the-header title="Remember Me"></the-header>
+    <the-header title="VUEJS COURSE-UDEMY"></the-header>
     <stored-resources :resources="storedResources"></stored-resources>
 </template>
 
