@@ -1,13 +1,12 @@
 <template>
-    <button :type="type" :class="mode">
+    <button :class="mode">
         <slot></slot>
     </button>
-    <!-- <base-button mode="flat"></base-button> -->
 </template>
 
 <script>
 export default{
-    props:['type', 'mode']
+    props:['mode']
 }
 </script>
 
