@@ -3,7 +3,9 @@
         <base-button @click="setSelectedTab('stored-resources')" :mode="storedResButtonMode">Stored Resources</base-button>
         <base-button @click="setSelectedTab('add-resource')" :mode="addResButtonMode">Add Resource</base-button>
     </base-card>
-    <component :is="selectedTab"></component>
+    <keep-alive>
+        <component :is="selectedTab"></component>
+    </keep-alive>
 </template>
 
 <script>
@@ -21,23 +23,25 @@ export default{
             selectedTab: 'stored-resources',
             storedResources:[
                 {
-                id:'official-guide',
-                title:'Official Guide',
-                description: 'The Official Vue.js documentation',
-                link: 'https://vuejs.org'
+                    id:'official-guide',
+                    title:'Official Guide',
+                    description: 'The Official Vue.js documentation',
+                    link: 'https://vuejs.org'
                 },
                 {
-                id:'google',
-                title:'Google',
-                description: 'Learn to google...',
-                link: 'https://google.org'
+                    id:'google',
+                    title:'Google',
+                    description: 'Learn to google...',
+                    link: 'https://google.org'
                 }
              ]     
         }
     },
     provide(){
         return{
-            resources: this.storedResources 
+            resources: this.storedResources,
+            addResource: this.addResource,
+            deleteResource: this.removeResource
         }
     },
     computed:{
@@ -51,6 +55,21 @@ export default{
     methods:{
         setSelectedTab(tab){
             this.selectedTab = tab;   
+        },
+        addResource(title,description,url){
+            const newResource ={
+                id: new Date().toTimeString(),
+                title: title,
+                description: description,
+                link: url
+            };
+            this.storedResources.unshift(newResource);
+            this.selectedTab = 'stored-resources';
+        },
+        removeResource(resId){
+            console.log(resId);
+            this.storedResources = this.storedResources.filter(res=> res.id !== resId);
+            console.log(this.storedResources.length)
         }
     }
 }

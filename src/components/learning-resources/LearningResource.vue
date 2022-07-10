@@ -3,24 +3,21 @@
       <!-- <li> -->
         <header>
           <h3>{{title}}</h3>
-          <base-button mode="flat">Delete</base-button>
+          <base-button mode="flat" @click="deleteResource">Delete</base-button>
         </header>
         <p>{{description}}</p>
         <nav>
-          <a href="link">View Resources</a>
+          <a :href="link">View Resources</a>
         </nav>
       <!-- </li> -->
     </base-card>
 </template>
 
 <script>
-// import BaseCard from './../../UI/BaseCard.vue'
 
 export default{
-    props: ['title', 'description', 'link'],
-    // components: {  // no need as base-class declared as a global component in App.vue
-    //   BaseCard
-    // }
+    props: ['id', 'title', 'description', 'link'],
+    inject: ['deleteResource']
 }
 </script>
 
